@@ -1,0 +1,24 @@
+{
+  "name": "ptscsm",
+  "version": "1.0.0",
+  "description": "Phần mềm Đại hội Cổ đông PTSC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dqcuong93/ptscsm.git"
+  },
+  "author": "CuongDao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dqcuong93/ptscsm/issues"
+  },
+  "homepage": "https://github.com/dqcuong93/ptscsm#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0"
+  }
+}
