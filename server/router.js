@@ -3,6 +3,12 @@ const configure = function (app) {
         res.render('home', {
             title: 'HOME'
         });
+    });
+
+    app.get('/attend', (req, res) => {
+        res.render('attend/attend', {
+            title: 'ATTEND'
+        })
     })
 };
 
