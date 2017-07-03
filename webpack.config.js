@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = {
     entry: {
         vendors: ['react', 'react-dom'],
-        attend: './public/views/attend/attend.js'
+        attend: './app/attend.js'
     },
     output: {
         filename: '[name].js',
@@ -14,7 +14,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                // test: path.join(__dirname, 'app'),
+                test: path.join(__dirname, 'app'),
                 loader: 'babel-loader'
             }
         ]
