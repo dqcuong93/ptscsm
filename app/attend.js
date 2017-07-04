@@ -11,19 +11,22 @@ class Form extends React.Component {
                     <div className="col-sm-12">
                         <div className="form-group form-float form-group-lg">
                             <div className="form-line">
-                                <input type="text" className="form-control" name="stockNumber" autoFocus value={this.props.stockNumber}/>
+                                <input type="text" className="form-control" name="stockNumber" autoFocus
+                                       onChange={this.props.inputChange}/>
                                 <label className="form-label">Stock number</label>
                             </div>
                         </div>
                         <div className="form-group form-float form-group-lg">
                             <div className="form-line">
-                                <input type="text" className="form-control" name="personalPassportId" value={this.props.personalPassportId}/>
+                                <input type="text" className="form-control" name="personalPassportId"
+                                       onChange={this.props.inputChange}/>
                                 <label className="form-label">Personal ID/Passport number</label>
                             </div>
                         </div>
                         <div className="form-group form-float form-group-lg">
                             <div className="form-line">
-                                <input type="text" className="form-control" name="name" value={this.props.name}/>
+                                <input type="text" className="form-control" name="name"
+                                       onChange={this.props.inputChange}/>
                                 <label className="form-label">Stockholder name</label>
                             </div>
                         </div>
@@ -31,7 +34,7 @@ class Form extends React.Component {
                 </div>
                 <div className="row clearfix">
                     <div className="col-sm-12">
-                        <button type="submit" className="btn btn-primary btn-lg" onClick={this.props.submitData}>
+                        <button type="submit" className="btn btn-primary btn-lg">
                             Submit
                         </button>
                     </div>
@@ -65,12 +68,12 @@ class Content extends React.Component {
         this.state = {
             stockNumber: '',
             personalPassportId: '',
-            name: '',
+            name: ''
         };
-        this.submitData = this.submitData.bind(this)
+        this.inputChange = this.inputChange.bind(this);
     };
 
-    submitData(event) {
+    inputChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -83,7 +86,7 @@ class Content extends React.Component {
     render() {
         return (
             <div>
-                <Form submitData={this.submitData}/>
+                <Form inputChange={this.inputChange}/>
                 <div className="row clearfix">
                     <div className="col-sm-12">
                         <Table/>
