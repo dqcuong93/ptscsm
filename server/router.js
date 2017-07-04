@@ -10,12 +10,6 @@ const configure = function (app) {
             title: 'ATTEND'
         })
     });
-
-    app.post('/attend', (req, res) => {
-        console.log(req.body);
-        res.end('WELL DONE')
-    })
-
 };
 
 module.exports = {
