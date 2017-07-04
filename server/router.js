@@ -9,7 +9,13 @@ const configure = function (app) {
         res.render('attend/attend', {
             title: 'ATTEND'
         })
+    });
+
+    app.post('/attend', (req, res) => {
+        console.log(req.body);
+        res.end('WELL DONE')
     })
+
 };
 
 module.exports = {

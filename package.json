@@ -27,6 +27,8 @@
     "webpack-dev-server": "^2.5.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
     "pg": "^6.4.0",

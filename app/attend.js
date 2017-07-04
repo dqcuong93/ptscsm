@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 var Form = React.createClass({
     render: function () {
@@ -10,27 +11,27 @@ var Form = React.createClass({
                     <div className="col-sm-12">
                         <div className="form-group form-float form-group-lg">
                             <div className="form-line">
-                                <input type="text" className="form-control" autoFocus/>
+                                <input type="text" className="form-control" name="stockNumber" autoFocus/>
                                 <label className="form-label">Stock number</label>
                             </div>
                         </div>
                         <div className="form-group form-float form-group-lg">
                             <div className="form-line">
-                                <input type="text" className="form-control"/>
+                                <input type="text" className="form-control" name="personalPassportId"/>
                                 <label className="form-label">Personal ID/Passport number</label>
                             </div>
                         </div>
                         <div className="form-group form-float form-group-lg">
                             <div className="form-line">
-                                <input type="text" className="form-control"/>
-                                <label className="form-label">Fullname</label>
+                                <input type="text" className="form-control" name="name"/>
+                                <label className="form-label">Stockholder name</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="row clearfix">
                     <div className="col-sm-12">
-                        <button className="btn btn-primary btn-lg">Submit</button>
+                        <button className="btn btn-primary btn-lg" onClick={this.props.getData}>Submit</button>
                     </div>
                 </div>
             </form>
@@ -44,19 +45,13 @@ var Table = React.createClass({
             <table data-toggle="table">
                 <thead>
                 <tr>
-                    <th>Col 1</th>
-                    <th>Col 2</th>
-                    <th>Col 3</th>
-                    <th>Col 4</th>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>ADDRESS</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Value 1</td>
-                    <td>Value 2</td>
-                    <td>Value 3</td>
-                    <td>Value 4</td>
-                </tr>
+                <tr></tr>
                 </tbody>
             </table>
         )
@@ -64,19 +59,27 @@ var Table = React.createClass({
 });
 
 var Content = React.createClass({
-    render: function () {
-        return (
-            <div>
-                <Form/>
-                <div className="row clearfix">
-                    <div className="col-sm-12">
-                        <Table/>
+        getData: function () {
+            axios.post('/attend').then((res)=>{
+                console.log(res);s
+            }).catch((err)=>{
+                console.log(err);
+            })
+        },
+        render: function () {
+            return (
+                <div>
+                    <Form getData={this.getData}/>
+                    <div className="row clearfix">
+                        <div className="col-sm-12">
+                            <Table/>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
-    }
-});
+            )
+        }
+    })
+;
 
 ReactDOM.render(
     <Content/>, document.getElementById('content')
