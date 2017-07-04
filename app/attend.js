@@ -61,7 +61,7 @@ var Table = React.createClass({
 var Content = React.createClass({
         getData: function () {
             axios.post('/attend').then((res)=>{
-                console.log(res);s
+                console.log(res);
             }).catch((err)=>{
                 console.log(err);
             })
