@@ -1,3 +1,5 @@
+const stockHolder = require('./db/stockholder');
+
 const configure = function (app) {
     app.get('/', (req, res) => {
         res.render('home', {
@@ -10,6 +12,13 @@ const configure = function (app) {
             title: 'ATTEND'
         })
     });
+
+    app.post('/attend', (req, res) => {
+        reqBody = req.body;
+        stockHolder.findStockholders(reqBody.stockNumber, reqBody.personalPassportId, reqBody.name, (result) => {
+            result ? res.send(result) : res.send('Cannot fetch data');
+        })
+    })
 };
 
 module.exports = {

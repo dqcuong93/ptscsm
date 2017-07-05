@@ -5,7 +5,7 @@ import axios from 'axios';
 class Form extends React.Component {
     render() {
         return (
-            <form>
+            <form onSubmit={this.props.submitData}>
                 <h2 className="card-inside-title">Floating Label Examples</h2>
                 <div className="row clearfix">
                     <div className="col-sm-12">
@@ -34,12 +34,24 @@ class Form extends React.Component {
                 </div>
                 <div className="row clearfix">
                     <div className="col-sm-12">
-                        <button type="submit" className="btn btn-primary btn-lg">
+                        <button type="submit" className="btn btn-lg btn-primary">
                             Submit
                         </button>
                     </div>
                 </div>
             </form>
+        )
+    }
+}
+
+class Rows extends React.Component {
+    render() {
+        return (
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         )
     }
 }
@@ -50,12 +62,13 @@ class Table extends React.Component {
             <table data-toggle="table">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>ADDRESS</th>
+                    <th>Stock Number</th>
+                    <th>Personal/Passport ID</th>
+                    <th>Name</th>
                 </tr>
                 </thead>
                 <tbody>
+                <Rows/>
                 </tbody>
             </table>
         )
@@ -68,9 +81,11 @@ class Content extends React.Component {
         this.state = {
             stockNumber: '',
             personalPassportId: '',
-            name: ''
+            name: '',
+            tableData: ['', '', '']
         };
         this.inputChange = this.inputChange.bind(this);
+        this.submitData = this.submitData.bind(this)
     };
 
     inputChange(event) {
@@ -83,10 +98,28 @@ class Content extends React.Component {
         });
     };
 
+    submitData(event) {
+        const {stockNumber, personalPassportId, name} = this.state;
+
+        axios.post('/attend', {
+            stockNumber: stockNumber,
+            personalPassportId: personalPassportId,
+            name: name
+        }).then((response) => {
+            this.setState({
+                tableData: response.data.rows
+            });
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        event.preventDefault();
+    };
+
     render() {
         return (
             <div>
-                <Form inputChange={this.inputChange}/>
+                <Form inputChange={this.inputChange} submitData={this.submitData}/>
                 <div className="row clearfix">
                     <div className="col-sm-12">
                         <Table/>

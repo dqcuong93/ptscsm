@@ -4,7 +4,7 @@ const pg = require('pg');
 // and client options
 // note: all config is optional and the environment variables
 // will be read if the config is not present
-var config = {
+const config = {
     user: 'postgres', //env var: PGUSER
     database: 'ptscsm', //env var: PGDATABASE
     password: 'cuong1211', //env var: PGPASSWORD
