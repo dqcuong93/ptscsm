@@ -46,6 +46,7 @@ class Form extends React.Component {
 
 class Rows extends React.Component {
     render() {
+        console.log(this.props.rowsData);
         return (
             <tr>
                 <td></td>
@@ -57,7 +58,18 @@ class Rows extends React.Component {
 }
 
 class Table extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            rowsData: ''
+        };
+    }
     render() {
+        console.log(this.props.tableData);
+        if (this.props.tableData) {
+            var rowsData = this.props.tableData[0];
+            console.log(rowsData);
+        }
         return (
             <table data-toggle="table">
                 <thead>
@@ -68,7 +80,7 @@ class Table extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                <Rows/>
+                <Rows rowsData={this.state.rowsData}/>
                 </tbody>
             </table>
         )
@@ -82,7 +94,7 @@ class Content extends React.Component {
             stockNumber: '',
             personalPassportId: '',
             name: '',
-            tableData: ['', '', '']
+            tableData: null
         };
         this.inputChange = this.inputChange.bind(this);
         this.submitData = this.submitData.bind(this)
@@ -122,7 +134,7 @@ class Content extends React.Component {
                 <Form inputChange={this.inputChange} submitData={this.submitData}/>
                 <div className="row clearfix">
                     <div className="col-sm-12">
-                        <Table/>
+                        <Table tableData={this.state.tableData}/>
                     </div>
                 </div>
             </div>
