@@ -46,7 +46,7 @@ class Form extends React.Component {
 
 class Rows extends React.Component {
     render() {
-        console.log(this.props.rowsData);
+        // console.log(this.props.rowsData);
         return (
             <tr>
                 <td></td>
@@ -63,13 +63,14 @@ class Table extends React.Component {
         this.state = {
             rowsData: ''
         };
+        console.log(this.props);
     }
+
     render() {
-        console.log(this.props.tableData);
-        if (this.props.tableData) {
-            var rowsData = this.props.tableData[0];
-            console.log(rowsData);
-        }
+        // if (this.props.tableData) {
+        //     var rowsData = this.props.tableData[0];
+        //     console.log(rowsData);
+        // }
         return (
             <table data-toggle="table">
                 <thead>
