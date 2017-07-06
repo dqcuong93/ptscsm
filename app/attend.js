@@ -46,14 +46,15 @@ class Form extends React.Component {
 
 class Rows extends React.Component {
     render() {
-        // console.log(this.props.rowsData);
-        return (
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        )
+        if (this.props.rowData) {
+            return (
+                <tr>
+                    <td>{this.props.rowData.stocknumber}</td>
+                    <td>{this.props.rowData.personalpassportid}</td>
+                    <td>{this.props.rowData.name}</td>
+                </tr>
+            )
+        }
     }
 }
 
@@ -61,30 +62,35 @@ class Table extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rowsData: ''
+            rowsData: []
         };
-        console.log(this.props);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            rowsData: nextProps.tableData
+        });
     }
 
     render() {
-        // if (this.props.tableData) {
-        //     var rowsData = this.props.tableData[0];
-        //     console.log(rowsData);
-        // }
-        return (
-            <table data-toggle="table">
-                <thead>
-                <tr>
-                    <th>Stock Number</th>
-                    <th>Personal/Passport ID</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <Rows rowsData={this.state.rowsData}/>
-                </tbody>
-            </table>
-        )
+        if (this.state.rowsData) {
+            var rows = [];
+            this.state.rowsData.forEach((rowsData) => {
+                rows.push(<Rows rowData={rowsData} key={rowsData.id}/>)
+            });
+            return (
+                <table data-toggle="table">
+                    <thead>
+                    <tr>
+                        <th>Stock Number</th>
+                        <th>Personal/Passport ID</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>{rows}</tbody>
+                </table>
+            )
+        }
     }
 }
 
