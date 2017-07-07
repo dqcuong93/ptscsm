@@ -1,11 +1,11 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const router = require('./server/router');
-const path = require('path');
-const bodyParser = require('body-parser');
+const express = require('express'),
+    exphbs = require('express-handlebars'),
+    router = require('./server/router'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
 
-const app = express();
-const PORT = 8080;
+    app = express(),
+    PORT = 8080;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());

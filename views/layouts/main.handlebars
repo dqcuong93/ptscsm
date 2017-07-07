@@ -64,12 +64,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">account_circle</i>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu bg-indigo">
                         <li class="header">ACCOUNT PANEL</li>
-                        <li class="body">
+                        <li class="body bg-info">
                             <ul class="menu">
                                 <li>
-                                    <a href="#">
+                                    <!-- trigger modal -->
+                                    <a type="button" data-toggle="modal" data-target="#accountModal">
                                         <div class="icon-circle bg-light-green">
                                             <i class="material-icons">sentiment_very_dissatisfied</i>
                                         </div>
@@ -80,10 +81,11 @@
                                             </p>
                                         </div>
                                     </a>
+                                    <!-- #trigger modal -->
                                 </li>
                             </ul>
                         </li>
-                        <li class="footer">
+                        <li class="footer bg-info">
                             <a href="#">Sign out</a>
                         </li>
                     </ul>
@@ -95,11 +97,48 @@
 </nav>
 <!-- #Top Bar -->
 
+<!-- Modal -->
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-col-indigo">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="myModalLabel">LOG IN PANEL</h3>
+            </div>
+            <form id="login_form" method="post" action="/">
+                <div class="modal-body">
+                    <br>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input id="email" type="email" class="form-control" name="email" autoFocus>
+                            <label class="form-label" for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input id="password" type="password" class="form-control" name="password">
+                            <label class="form-label" for="password">Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-lg bg-indigo">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- #Modal -->
+
+<!-- Body -->
 <section class="content p-b-50">
     <div class="container-fluid">
         {{{body}}}
     </div>
 </section>
+<!-- #Body -->
 
 <!--FOOTER-->
 <div class="navbar-fixed-bottom bg-indigo">

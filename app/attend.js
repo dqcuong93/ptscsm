@@ -34,7 +34,7 @@ class Form extends React.Component {
                 </div>
                 <div className="row clearfix">
                     <div className="col-sm-12">
-                        <button type="submit" className="btn btn-lg btn-primary">
+                        <button type="submit" className="btn btn-lg btn-primary waves-effect">
                             Submit
                         </button>
                     </div>
@@ -80,7 +80,7 @@ class Table extends React.Component {
             });
             return (
                 <table data-toggle="table">
-                    <thead>
+                    <thead className="bg-deep-orange">
                     <tr>
                         <th>Stock Number</th>
                         <th>Personal/Passport ID</th>
