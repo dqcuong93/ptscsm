@@ -7,17 +7,29 @@ const stockHolder = require('./db/stockholder'),
             });
         });
 
+        app.post('/login', (req, res) => {
+            console.log(req.body);
+            res.render('login_success', {
+                title: 'WELCOME',
+                user: 'Cường'
+            })
+        });
+
         app.get('/attend', (req, res) => {
             res.render('attend/attend', {
-                title: 'ATTEND'
+                title: 'ATTEND',
             })
         });
 
         app.post('/attend', (req, res) => {
             reqBody = req.body;
-            stockHolder.findStockholders(reqBody.stockNumber, reqBody.personalPassportId, reqBody.name, (result) => {
-                result ? res.send(result) : res.send('Cannot fetch data');
-            })
+            stockHolder.findStockholders(
+                reqBody.stockNumber,
+                reqBody.personalPassportId,
+                reqBody.name,
+                (result) => {
+                    result ? res.send(result) : res.send('Cannot fetch data');
+                })
         })
     };
 
