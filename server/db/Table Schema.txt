@@ -1,0 +1,33 @@
+CREATE TABLE "user_session" (
+  "sid" varchar NOT NULL COLLATE "default",
+	"sess" json NOT NULL,
+	"expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "user_session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+#######################################################################################################################
+CREATE TABLE stockholder
+(
+    id bigserial NOT NULL,
+    stocknumber text,
+    personalpassportid text,
+    name text ,
+    CONSTRAINT stockholder_pkey PRIMARY KEY (id)
+)
+WITH (OIDS = FALSE)
+
+ALTER TABLE stockholder OWNER to postgres;
+
+#######################################################################################################################
+CREATE TABLE user_
+(
+    id biserial NOT NULL,
+    email text,
+    password text,
+    name text,
+    CONSTRAINT user_pkey PRIMARY KEY (id)
+)
+WITH (OIDS = FALSE)
+
+ALTER TABLE user_ OWNER to postgres;
