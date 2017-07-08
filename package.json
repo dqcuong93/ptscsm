@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --port 8081 --inline --progress --colors",
     "build": "webpack --watch",
-    "start": "node index"
+    "start": "nodemon index"
   },
   "repository": {
     "type": "git",

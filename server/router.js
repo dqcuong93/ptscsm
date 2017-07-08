@@ -1,25 +1,19 @@
 const stockHolder = require('./db/stockholder'),
 
-    configure = function (app) {
+    configure = function (app, passport) {
         app.get('/', (req, res) => {
             res.render('home', {
                 title: 'HOME'
             });
         });
 
-        app.post('/login', (req, res) => {
-            passport.authenticate('local', {
-                successRedirect: '/',
-                failureRedirect: '/login',
-                failureFlash: false });
-            // console.log(req.body);
-            // res.render('login_success', {
-            //     title: 'WELCOME',
-            //     user: 'Cường'
-            // })
-        });
+        app.post('/login', passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: false
+        }));
 
-        app.get('/attend', (req, res) => {
+        app.get('/attend', isLoggedIn, (req, res) => {
             res.render('attend/attend', {
                 title: 'ATTEND',
             })
@@ -36,6 +30,13 @@ const stockHolder = require('./db/stockholder'),
                 })
         })
     };
+
+// route middleware to ensure user is logged in
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+
+    res.redirect('/');
+}
 
 module.exports = {
     configure

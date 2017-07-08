@@ -5,7 +5,8 @@ const pool = require('./db_config'),
                 console.log(err);
                 return callback(err, null);
             }
-            return callback(null, result);
+            console.log('success');
+            return callback(null, result.rows[0]);
         })
     },
 
