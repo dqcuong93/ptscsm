@@ -8,11 +8,15 @@ const stockHolder = require('./db/stockholder'),
         });
 
         app.post('/login', (req, res) => {
-            console.log(req.body);
-            res.render('login_success', {
-                title: 'WELCOME',
-                user: 'Cường'
-            })
+            passport.authenticate('local', {
+                successRedirect: '/',
+                failureRedirect: '/login',
+                failureFlash: false });
+            // console.log(req.body);
+            // res.render('login_success', {
+            //     title: 'WELCOME',
+            //     user: 'Cường'
+            // })
         });
 
         app.get('/attend', (req, res) => {

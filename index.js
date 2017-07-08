@@ -3,6 +3,8 @@ const express = require('express'),
     router = require('./server/router'),
     path = require('path'),
     bodyParser = require('body-parser'),
+    session = require('./server/session'),
+    passport = require('./server/passport'),
 
     app = express(),
     PORT = 8080;
@@ -10,6 +12,8 @@ const express = require('express'),
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(session.config);
+passport.config(app);
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
