@@ -5,8 +5,12 @@ const pool = require('./db_config'),
         pool.query('SELECT * FROM stockholder WHERE stocknumber LIKE($1) OR personalpassportid LIKE($2) OR LOWER(name) LIKE LOWER($3)',
             [stockNumber, personalPassportId, name],
             (err, result) => {
-                err ? console.log(err) : console.log('Success');
-                return callback(result);
+                if (err) {
+                    console.log(err);
+                    return callback(err, null);
+                }
+                console.log('Success! ' + result.rows.length + ' user(s) found');
+                return callback(null, result.rows)
             })
     };
 

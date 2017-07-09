@@ -73,24 +73,22 @@ class Table extends React.Component {
     }
 
     render() {
-        if (this.state.rowsData) {
-            var rows = [];
-            this.state.rowsData.forEach((rowsData) => {
-                rows.push(<Rows rowData={rowsData} key={rowsData.id}/>)
-            });
-            return (
-                <table data-toggle="table">
-                    <thead className="bg-deep-orange">
-                    <tr>
-                        <th>Stock Number</th>
-                        <th>Personal/Passport ID</th>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>{rows}</tbody>
-                </table>
-            )
-        }
+        var rows = [];
+        this.state.rowsData.forEach((rowsData) => {
+            rows.push(<Rows rowData={rowsData} key={rowsData.id}/>)
+        });
+        return (
+            <table data-toggle="table">
+                <thead className="bg-deep-orange">
+                <tr>
+                    <th>Stock Number</th>
+                    <th>Personal/Passport ID</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        )
     }
 }
 
@@ -126,7 +124,7 @@ class Content extends React.Component {
             name: name
         }).then((response) => {
             this.setState({
-                tableData: response.data.rows
+                tableData: response.data
             });
         }).catch((err) => {
             console.log(err);

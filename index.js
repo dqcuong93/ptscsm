@@ -23,9 +23,9 @@ app.use(session({
         tableName: 'user_session'   // Use another table-name than the default "session" one
     }),
     secret: 'ptscsm',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: {maxAge: 60 * 1000} // 60 seconds
+    cookie: {maxAge: 5 * 60 * 1000} // 5 minutes
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
