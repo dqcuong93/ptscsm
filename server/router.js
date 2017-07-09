@@ -1,25 +1,44 @@
 const stockHolder = require('./db/stockholder'),
-    user = require('./passport').username,
+    user = require('./db/user'),
 
     configure = function (app, passport) {
         app.get('/', isLoggedIn, (req, res) => {
-            console.log(username);
             res.render('home', {
-                title: 'HOME',
-                user: username
+                title: 'HOME PAGE',
+                username: req.session.passport.username
             });
         });
 
         app.post('/login', passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
+            successRedirect: '/login_success',
+            failureRedirect: '/login_failed',
             failureFlash: false
         }));
 
+        app.get('/login_failed', (req, res)=> {
+            res.render('login_failed', {
+                title: 'LOGIN FAILED'
+            })
+        });
+
+        app.get('/login_success', isLoggedIn, (req, res) => {
+            res.render('login_success', {
+                title: 'LOGIN SUCCESS',
+                username: req.session.passport.username
+            })
+        });
+
+        app.get('/logout', (req, res) => {
+            req.session.passport.lastLoginId = req.session.passport.user;
+            req.logout();
+            req.session.passport.username = '';
+            res.redirect('/');
+        });
+
         app.get('/attend', isLoggedIn, (req, res) => {
             res.render('attend/attend', {
-                title: 'ATTEND',
-                user: username
+                title: 'ATTEND PAGE',
+                username: req.session.passport.username
             })
         });
 
@@ -30,20 +49,30 @@ const stockHolder = require('./db/stockholder'),
                 reqBody.personalPassportId,
                 reqBody.name,
                 (err, result) => {
-                    err ? res.send('Cannot fetch data, something wrong happened') : res.send(result);
+                    err ? res.end('Cannot fetch data, something wrong happened') : res.send(result);
                 })
         })
     };
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) return next();
+    if (req.isAuthenticated()) {
+        const userId = req.session.passport.user;
+        user.findById(userId, (err, result) => {
+            if (err) {
+                return res.end('some err');
+            }
+            req.session.passport.username = result.name;
+        });
+        return next();
+    }
 
     res.render('home', {
-        title: 'HOME'
+        title: 'HOME PAGE'
     });
 }
 
 module.exports = {
-    configure
+    configure,
+    isLoggedIn
 };

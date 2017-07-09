@@ -3,8 +3,6 @@ const LocalStrategy = require('passport-local').Strategy,
 
 module.exports = function (passport) {
 
-    var username = '';
-
     passport.serializeUser((user, done) => {
         done(null, user.id);
     });
@@ -33,12 +31,9 @@ module.exports = function (passport) {
                     if (user.password !== password) {
                         return done(null, false, {message: 'Incorrect password.'});
                     }
-                    username = user.name;
                     return done(null, user);
                 });
             });
         }
     ));
-
-    exports.username = username;
 };

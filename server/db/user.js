@@ -17,7 +17,7 @@ const pool = require('./db_config'),
                 return callback(err, null);
             }
             console.log('Success! ' + result.rows.length + ' user found!');
-            return callback(null, result);
+            return callback(null, result.rows[0]);
         })
     };
 

@@ -69,8 +69,16 @@
                         <li class="body bg-info">
                             <ul class="menu" style="overflow: hidden">
                                 <li>
-                                    {{#if user}}
-                                        <p class="font-bold">Welcome, {{user}}</p>
+                                    {{#if username}}
+                                        <a>
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">sentiment_very_satisfied</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>Welcome, {{username}}</h4>
+                                                <p>Happy using application</p>
+                                            </div>
+                                        </a>
                                     {{else}}
                                         <!-- trigger modal -->
                                         <a type="button" data-toggle="modal" data-target="#accountModal">
@@ -80,7 +88,7 @@
                                             <div class="menu-info">
                                                 <h4>Sign in to continue</h4>
                                                 <p>
-                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                    Please log in to continue using application
                                                 </p>
                                             </div>
                                         </a>
@@ -89,9 +97,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="footer bg-info">
-                            <a href="#">Sign out</a>
-                        </li>
+                        {{#if username}}
+                            <li class="footer bg-info">
+                                <a href="/logout">Sign out</a>
+                            </li>
+                        {{/if}}
                     </ul>
                 </li>
                 <!-- #END# Account Panel -->
