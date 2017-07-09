@@ -17,17 +17,13 @@ CREATE TABLE stockholder
 )
 WITH (OIDS = FALSE)
 
-ALTER TABLE stockholder OWNER to postgres;
-
 #######################################################################################################################
 CREATE TABLE user_
 (
-    id biserial NOT NULL,
+    id bigserial NOT NULL,
     email text,
     password text,
     name text,
     CONSTRAINT user_pkey PRIMARY KEY (id)
 )
 WITH (OIDS = FALSE)
-
-ALTER TABLE user_ OWNER to postgres;
