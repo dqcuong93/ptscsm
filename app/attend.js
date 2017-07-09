@@ -46,15 +46,13 @@ class Form extends React.Component {
 
 class Rows extends React.Component {
     render() {
-        if (this.props.rowData) {
-            return (
-                <tr>
-                    <td>{this.props.rowData.stocknumber}</td>
-                    <td>{this.props.rowData.personalpassportid}</td>
-                    <td>{this.props.rowData.name}</td>
-                </tr>
-            )
-        }
+        return (
+            <tr>
+                <td>{this.props.rowData.stocknumber}</td>
+                <td>{this.props.rowData.personalpassportid}</td>
+                <td>{this.props.rowData.name}</td>
+            </tr>
+        )
     }
 }
 

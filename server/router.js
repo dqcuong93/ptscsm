@@ -29,9 +29,8 @@ const stockHolder = require('./db/stockholder'),
         });
 
         app.get('/logout', (req, res) => {
-            req.session.passport.lastLoginId = req.session.passport.user;
+            delete req.session.passport.username;
             req.logout();
-            req.session.passport.username = '';
             res.redirect('/');
         });
 
