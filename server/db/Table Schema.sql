@@ -3,7 +3,6 @@ CREATE TABLE "user_session" (
 	"sess" json NOT NULL,
 	"expire" timestamp(6) NOT NULL
 )
-WITH (OIDS=FALSE);
 ALTER TABLE "user_session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 
 #######################################################################################################################
@@ -15,7 +14,6 @@ CREATE TABLE stockholder
     name text ,
     CONSTRAINT stockholder_pkey PRIMARY KEY (id)
 )
-WITH (OIDS = FALSE)
 
 #######################################################################################################################
 CREATE TABLE user_
@@ -26,4 +24,3 @@ CREATE TABLE user_
     name text,
     CONSTRAINT user_pkey PRIMARY KEY (id)
 )
-WITH (OIDS = FALSE)

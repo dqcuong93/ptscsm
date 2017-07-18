@@ -15,7 +15,7 @@ const stockHolder = require('./db/stockholder'),
             failureFlash: false
         }));
 
-        app.get('/login_failed', (req, res)=> {
+        app.get('/login_failed', (req, res) => {
             res.render('login_failed', {
                 title: 'LOGIN FAILED'
             })
@@ -42,14 +42,14 @@ const stockHolder = require('./db/stockholder'),
         });
 
         app.post('/attend', isLoggedIn, (req, res) => {
-            reqBody = req.body;
-            stockHolder.findStockholders(
-                reqBody.stockNumber,
-                reqBody.personalPassportId,
-                reqBody.name,
-                (err, result) => {
-                    err ? res.end('Cannot fetch data, something wrong happened') : res.send(result);
-                })
+            var body = req.body,
+                stockNumber = body.stockNumber,
+                personalPassportId = body.personalPassportId,
+                name = body.name;
+
+            stockHolder.findStockholders(stockNumber, personalPassportId, name, (err, result) => {
+                err ? res.send('Cannot fetch data, something wrong happened') : res.send(result);
+            })
         })
     };
 
