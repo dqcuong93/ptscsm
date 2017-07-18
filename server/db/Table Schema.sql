@@ -1,21 +1,20 @@
-CREATE TABLE "user_session" (
-  "sid" varchar NOT NULL COLLATE "default",
-	"sess" json NOT NULL,
-	"expire" timestamp(6) NOT NULL
-)
-ALTER TABLE "user_session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+﻿CREATE TABLE user_session
+(
+    sid character varying NOT NULL,
+    sess json NOT NULL,
+    expire timestamp(6) without time zone NOT NULL,
+    CONSTRAINT session_pkey PRIMARY KEY (sid)
+);
 
-#######################################################################################################################
-CREATE TABLE stockholder
+CREATE TABLE public.stockholder
 (
     id bigserial NOT NULL,
     stocknumber text,
     personalpassportid text,
-    name text ,
+    name text,
     CONSTRAINT stockholder_pkey PRIMARY KEY (id)
-)
+);
 
-#######################################################################################################################
 CREATE TABLE user_
 (
     id bigserial NOT NULL,
@@ -23,4 +22,8 @@ CREATE TABLE user_
     password text,
     name text,
     CONSTRAINT user_pkey PRIMARY KEY (id)
-)
+);
+
+ALTER TABLE user_ OWNER to postgres;
+ALTER TABLE stockholder OWNER to postgres;
+ALTER TABLE user_session OWNER to postgres;
