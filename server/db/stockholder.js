@@ -13,8 +13,20 @@ const
                 console.log('Success! ' + result.rows.length + ' user(s) found');
                 return callback(null, result.rows)
             })
+    },
+
+    findStocknumber = function (stocknumber, callback) {
+        pool.query('SELECT * FROM stockholder WHERE stocknumber=$1', [stocknumber], (err, result) => {
+            if (err) {
+                console.log('Cannot find this stockholder');
+                return callback(err, null);
+            }
+            console.log('Stockholder found');
+            return callback(null, result);
+        })
     };
 
 module.exports = {
-    findStockholders
+    findStockholders,
+    findStocknumber
 };

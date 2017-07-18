@@ -4,7 +4,6 @@ const
 
     configure = function (app, passport) {
         app.get('/', isLoggedIn, (req, res) => {
-            console.log(req.session.passport.username);
             res.render('home', {
                 title: 'HOME PAGE',
                 username: req.session.passport.username
@@ -24,7 +23,6 @@ const
         });
 
         app.get('/login_success', isLoggedIn, (req, res) => {
-            console.log(req.session.passport.username);
             res.render('login_success', {
                 title: 'LOGIN SUCCESS',
                 username: req.session.passport.username
@@ -53,12 +51,17 @@ const
             stockHolder.findStockholders(stockNumber, personalPassportId, name, (err, result) => {
                 err ? res.send('Cannot fetch data, something wrong happened') : res.send(result);
             })
-        })
+        });
 
         app.get('/ticking', isLoggedIn, (req, res) => {
             res.render('attend/ticking', {
-                title: "Tickets ticking"
+                title: "Tickets ticking",
+                username: req.session.passport.username
             })
+        });
+
+        app.post('/ticking', isLoggedIn, (req, res) => {
+
         })
     };
 
@@ -67,9 +70,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         const userId = req.session.passport.user;
         user.findById(userId, (err, result) => {
-            if (err) {
-                return res.end('some err');
-            }
+            if (err) return res.end('some err');
             req.session.passport.username = result.name;
         });
         return next();
