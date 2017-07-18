@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './attend/form';
-import Table from './attend/table';
+import Form from './checking/form';
+import Table from './checking/table';
 
 class Content extends React.Component {
     constructor(props) {

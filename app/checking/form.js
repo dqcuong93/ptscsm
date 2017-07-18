@@ -26,7 +26,7 @@ export default class Form extends React.Component {
     submitData(event) {
         const {stockNumber, personalPassportId, name} = this.state;
 
-        axios.post('/attend', {
+        axios.post('/checking', {
             stockNumber: stockNumber,
             personalPassportId: personalPassportId,
             name: name

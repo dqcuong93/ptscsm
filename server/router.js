@@ -1,8 +1,10 @@
-const stockHolder = require('./db/stockholder'),
+const
+    stockHolder = require('./db/stockholder'),
     user = require('./db/user'),
 
     configure = function (app, passport) {
         app.get('/', isLoggedIn, (req, res) => {
+            console.log(req.session.passport.username);
             res.render('home', {
                 title: 'HOME PAGE',
                 username: req.session.passport.username
@@ -22,6 +24,7 @@ const stockHolder = require('./db/stockholder'),
         });
 
         app.get('/login_success', isLoggedIn, (req, res) => {
+            console.log(req.session.passport.username);
             res.render('login_success', {
                 title: 'LOGIN SUCCESS',
                 username: req.session.passport.username
@@ -34,14 +37,14 @@ const stockHolder = require('./db/stockholder'),
             res.redirect('/');
         });
 
-        app.get('/attend', isLoggedIn, (req, res) => {
-            res.render('attend/attend', {
-                title: 'ATTEND PAGE',
+        app.get('/checking', isLoggedIn, (req, res) => {
+            res.render('attend/checking', {
+                title: 'Stockholders checking',
                 username: req.session.passport.username
             })
         });
 
-        app.post('/attend', isLoggedIn, (req, res) => {
+        app.post('/checking', isLoggedIn, (req, res) => {
             var body = req.body,
                 stockNumber = body.stockNumber,
                 personalPassportId = body.personalPassportId,
@@ -49,6 +52,12 @@ const stockHolder = require('./db/stockholder'),
 
             stockHolder.findStockholders(stockNumber, personalPassportId, name, (err, result) => {
                 err ? res.send('Cannot fetch data, something wrong happened') : res.send(result);
+            })
+        })
+
+        app.get('/ticking', isLoggedIn, (req, res) => {
+            res.render('attend/ticking', {
+                title: "Tickets ticking"
             })
         })
     };

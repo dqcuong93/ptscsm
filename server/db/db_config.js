@@ -1,4 +1,5 @@
-const pg = require('pg'),
+const
+    pg = require('pg'),
 
 // create a config to configure both pooling behavior
 // and client options

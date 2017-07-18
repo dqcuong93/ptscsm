@@ -6,7 +6,7 @@
     CONSTRAINT session_pkey PRIMARY KEY (sid)
 );
 
-CREATE TABLE public.stockholder
+CREATE TABLE stockholder
 (
     id bigserial NOT NULL,
     stocknumber text,

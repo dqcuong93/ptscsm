@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = {
     entry: {
         vendors: ['react', 'react-dom'],
-        attend: './app/attend.js'
+        checking: './app/checking.js'
     },
     output: {
         filename: '[name].js',

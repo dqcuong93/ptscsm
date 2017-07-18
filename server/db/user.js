@@ -1,4 +1,6 @@
-const pool = require('./db_config'),
+const
+    pool = require('./db_config'),
+
     findOne = function (email, password, callback) {
         pool.query('SELECT * FROM user_ WHERE email=$1 AND password=$2',
             [email, password],

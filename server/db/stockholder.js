@@ -1,4 +1,5 @@
-const pool = require('./db_config'),
+const
+    pool = require('./db_config'),
 
     findStockholders = function (stockNumber, personalPassportId, name, callback) {
         name = '%' + name + '%';
