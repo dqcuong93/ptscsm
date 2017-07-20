@@ -2,7 +2,7 @@ const
     pool = require('./db_config'),
 
     findOne = function (email, password, callback) {
-        pool.query('SELECT * FROM user_ WHERE email=$1 AND password=$2',
+        pool.query('SELECT * FROM account WHERE email=$1 AND password=$2',
             [email, password],
             (err, result) => {
                 if (err) {
@@ -15,7 +15,7 @@ const
     },
 
     findById = function (id, callback) {
-        pool.query('SELECT * FROM user_ WHERE id=$1::int',
+        pool.query('SELECT * FROM account WHERE id=$1::int',
             [id],
             (err, result) => {
                 if (err) {

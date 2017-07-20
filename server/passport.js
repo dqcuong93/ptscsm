@@ -1,14 +1,15 @@
 const LocalStrategy = require('passport-local').Strategy,
-    User = require('./db/user');
+    User = require('./db/account');
 
 module.exports = function (passport) {
 
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        user = (({id, name}) => ({id, name}))(user); //Subset user to get only 2 properties "id" and "name"
+        done(null, user);
     });
 
-    passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => {
+    passport.deserializeUser((user, done) => {
+        User.findById(user.id, (err, user) => {
             done(err, user);
         });
     });

@@ -1,4 +1,8 @@
-﻿CREATE TABLE user_session
+﻿DROP TABLE account_session;
+DROP TABLE account;
+DROP TABLE stockholder;
+
+CREATE TABLE account_session
 (
     sid character varying NOT NULL,
     sess json NOT NULL,
@@ -15,7 +19,7 @@ CREATE TABLE stockholder
     CONSTRAINT stockholder_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE user_
+CREATE TABLE account
 (
     id bigserial NOT NULL,
     email text,
@@ -24,6 +28,6 @@ CREATE TABLE user_
     CONSTRAINT user_pkey PRIMARY KEY (id)
 );
 
-ALTER TABLE user_ OWNER to postgres;
+ALTER TABLE account OWNER to postgres;
 ALTER TABLE stockholder OWNER to postgres;
-ALTER TABLE user_session OWNER to postgres;
+ALTER TABLE account_session OWNER to postgres;

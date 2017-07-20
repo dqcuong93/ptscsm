@@ -16,7 +16,7 @@ const
     },
 
     findStocknumber = function (stocknumber, callback) {
-        pool.query('SELECT * FROM stockholder WHERE stocknumber=$1', [stocknumber], (err, result) => {
+        pool.query('SELECT FROM stockholder WHERE stocknumber=$1', [stocknumber], (err, result) => {
             if (err) {
                 console.log('Cannot find this stockholder');
                 return callback(err, null);

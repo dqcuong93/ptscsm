@@ -1,4 +1,5 @@
-const express = require('express'),
+const
+    express = require('express'),
     exphbs = require('express-handlebars'),
     router = require('./server/router'),
     path = require('path'),
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
     store: new pgSession({
         pool: pgPool,                // Connection pool
-        tableName: 'user_session'   // Use another table-name than the default "session" one
+        tableName: 'account_session'   // Use another table-name than the default "session" one
     }),
     secret: 'ptscsm',
     resave: true,

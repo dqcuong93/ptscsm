@@ -1,12 +1,12 @@
 const
     stockHolder = require('./db/stockholder'),
-    user = require('./db/user'),
+    user = require('./db/account'),
 
     configure = function (app, passport) {
         app.get('/', isLoggedIn, (req, res) => {
             res.render('home', {
                 title: 'HOME PAGE',
-                username: req.session.passport.username
+                username: req.session.passport.user.name
             });
         });
 
@@ -25,12 +25,11 @@ const
         app.get('/login_success', isLoggedIn, (req, res) => {
             res.render('login_success', {
                 title: 'LOGIN SUCCESS',
-                username: req.session.passport.username
+                username: req.session.passport.user.name
             })
         });
 
         app.get('/logout', (req, res) => {
-            delete req.session.passport.username;
             req.logout();
             res.redirect('/');
         });
@@ -38,7 +37,7 @@ const
         app.get('/checking', isLoggedIn, (req, res) => {
             res.render('attend/checking', {
                 title: 'Stockholders checking',
-                username: req.session.passport.username
+                username: req.session.passport.user.name
             })
         });
 
@@ -56,22 +55,23 @@ const
         app.get('/ticking', isLoggedIn, (req, res) => {
             res.render('attend/ticking', {
                 title: "Tickets ticking",
-                username: req.session.passport.username
+                username: req.session.passport.user.name
             })
         });
 
         app.post('/ticking', isLoggedIn, (req, res) => {
-
+            stockHolder.findStocknumber(req.body.stockNumber, (err, result) => {
+                err ? res.send('Something wrong happened') : res.send(result);
+            })
         })
     };
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
-        const userId = req.session.passport.user;
+        const userId = req.session.passport.user.id;
         user.findById(userId, (err, result) => {
             if (err) return res.end('some err');
-            req.session.passport.username = result.name;
         });
         return next();
     }
@@ -82,6 +82,5 @@ function isLoggedIn(req, res, next) {
 }
 
 module.exports = {
-    configure,
-    isLoggedIn
+    configure
 };
