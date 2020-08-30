@@ -1,5 +1,7 @@
 # PTSC Stakeholders Management
 
-Demo of Stakeholders Managed software.
+Company: PTSC.
+
+Stakeholders Managed software.
 
 Written in Node.js
