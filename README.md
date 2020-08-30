@@ -1,4 +1,4 @@
-# PTSC Stakeholders Management
+# PTSC Stakeholders Management software
 
 Company: PTSC.
 
