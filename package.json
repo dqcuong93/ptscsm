@@ -27,7 +27,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.20.0",
     "body-parser": "^1.17.2",
     "connect-pg-simple": "^4.2.0",
     "express": "^4.15.3",
